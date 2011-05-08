@@ -97,9 +97,11 @@ public class Retrieval {
             while (instances.hasMoreElements()) {
                 Instance instance = (Instance) instances.nextElement();
                 String instanceName = getInstanceName(instance);
+                String className = getClassName(instance);
 
                 for (Instance queryInstance : documentVectors) {
                     String queryInstanceName = getInstanceName(queryInstance);
+
                     // skip same document
                     if (instanceName.equals(queryInstanceName))
                         continue;
@@ -114,7 +116,7 @@ public class Retrieval {
                     }
 
                     DocumentSimilarity documentSimilarity =
-                            new DocumentSimilarity(distance, instanceName, indexFile.getName());
+                            new DocumentSimilarity(distance, instanceName, className, indexFile.getName());
 
                     similarities.add(documentSimilarity);
                 }
@@ -132,6 +134,9 @@ public class Retrieval {
                 }
             }
         }
+
+                    // document -> similarity PER CLASS
+            HashMap<String, DocumentStatistics> documentToStatisticsPerClass = new HashMap();
 
         for (Map.Entry<String, Map<String, List<DocumentSimilarity>>> queryIndexMap : table.rowMap().entrySet()) {
             String query = queryIndexMap.getKey();
@@ -160,6 +165,8 @@ public class Retrieval {
 
             // index -> similarity
             HashMap<String, DocumentStatistics> indexStatistics = new HashMap();
+
+
 
 
             for (int i = 0; i < k; i++) {
@@ -196,6 +203,27 @@ public class Retrieval {
 
                 System.out.println();
             }
+
+            String queryClass = query.split("/", 2)[0];
+
+                for (File index : indices) {
+                    List<DocumentSimilarity> documentSimilarities = indexResults.get(index.getName());
+                    for (DocumentSimilarity documentSimilarity : documentSimilarities) {
+                            if(documentSimilarity.getClassName().equals(queryClass))
+                            {
+                                DocumentStatistics statisticsPerClass = documentToStatisticsPerClass.get(queryClass);
+
+                                if(statisticsPerClass == null)
+                                    statisticsPerClass = new DocumentStatistics(queryClass);
+
+                                statisticsPerClass.addState(0, documentSimilarity.getDistance());
+
+                                documentToStatisticsPerClass.put(queryClass, statisticsPerClass);
+                            }
+                            //documentToStatisticsPerClass.put(queryClass, documentSimilarity);
+                        }
+                }
+
 
             System.out.println("Distances:");
 
@@ -260,12 +288,27 @@ public class Retrieval {
                             stats.getNumberOfOccurrences(), stats.getAverageRank(), stats.getAverageDistance()));
                 }
             }
+
+
+
         }
+                    // Print average distances
+
+            System.out.println("\n\n\n Distances per class:");
+            for(DocumentStatistics stat : documentToStatisticsPerClass.values())
+            {
+                  System.out.println("Class: " + stat.getDocument() + " Min: " + stat.getMinDistance() + " Max: "
+                        + stat.getMaxDistance() + " Avg: " + stat.getAverageDistance());
+            }
     }
 
 
     private String getInstanceName(Instance instance) {
         return instance.toString(classAttribute) + "/" + instance.toString(documentAttribute);
+    }
+
+    private String getClassName(Instance instance) {
+        return instance.toString(classAttribute);
     }
 
     private void setupIndices() {

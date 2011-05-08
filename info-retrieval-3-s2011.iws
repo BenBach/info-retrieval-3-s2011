@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="951fd592-9dc2-4dc0-9fd4-05cd84abd370" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\informationRetrieval\info-retrieval-3-s2011\src\DistanceStatistics.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/DocumentStatistics.class" afterPath="$PROJECT_DIR$/build/DocumentStatistics.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/DocumentSimilarity.class" afterPath="$PROJECT_DIR$/build/DocumentSimilarity.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/Retrieval$1.class" afterPath="$PROJECT_DIR$/build/Retrieval$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/Retrieval$2.class" afterPath="$PROJECT_DIR$/build/Retrieval$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/Retrieval.class" afterPath="$PROJECT_DIR$/build/Retrieval.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/info-retrieval-3-s2011.iws" afterPath="$PROJECT_DIR$/info-retrieval-3-s2011.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DocumentStatistics.java" afterPath="$PROJECT_DIR$/src/DocumentStatistics.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DocumentSimilarity.java" afterPath="$PROJECT_DIR$/src/DocumentSimilarity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Retrieval.java" afterPath="$PROJECT_DIR$/src/Retrieval.java" />
     </list>
     <ignored path="info-retrieval-3-s2011.iws" />
@@ -29,7 +27,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/Retrieval.java" line="205" class="Retrieval" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/Retrieval.java" line="227" class="Retrieval" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -42,46 +40,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/Retrieval.java" line="175" class="Retrieval" package="">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/DocumentStatistics.java" line="64" class="DocumentStatistics" package="">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/DocumentStatistics.java" line="50" class="DocumentStatistics" package="">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/DocumentStatistics.java" line="80" class="DocumentStatistics" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/Retrieval.java" line="211" class="Retrieval" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -135,19 +94,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DocumentStatistics.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DocumentStatistics.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DocumentStatistics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="32" selection-start="1614" selection-end="1614" vertical-scroll-proportion="0.5646853">
-              <folding />
+            <state line="36" column="30" selection-start="952" selection-end="952" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="method#getAverageDistance#0;class#DocumentStatistics#0" expanded="false" />
+                <element signature="method#getMinDistance#0;class#DocumentStatistics#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Retrieval.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Retrieval.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Retrieval.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="206" column="34" selection-start="8535" selection-end="8535" vertical-scroll-proportion="0.0">
+            <state line="218" column="83" selection-start="9284" selection-end="9284" vertical-scroll-proportion="-3.879925">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -158,7 +120,7 @@
       <file leaf-file-name="DocumentSimilarity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DocumentSimilarity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="38" selection-start="252" selection-end="252" vertical-scroll-proportion="0.0">
+            <state line="21" column="39" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -187,10 +149,10 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/DocumentSimilarity.java" />
         <option value="$PROJECT_DIR$/src/DistanceStatistics.java" />
-        <option value="$PROJECT_DIR$/src/Retrieval.java" />
         <option value="$PROJECT_DIR$/src/DocumentStatistics.java" />
+        <option value="$PROJECT_DIR$/src/DocumentSimilarity.java" />
+        <option value="$PROJECT_DIR$/src/Retrieval.java" />
       </list>
     </option>
   </component>
@@ -459,11 +421,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24973261" sideWeight="0.6707589" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25187165" sideWeight="0.6707589" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39732143" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -473,7 +435,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2090909" sideWeight="0.15290178" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924107" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924107" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -544,29 +506,34 @@
         <state line="18" column="64" selection-start="775" selection-end="775" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DocumentSimilarity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="38" selection-start="252" selection-end="252" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SimilarityMeasure.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="12" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Retrieval.java">
+    <entry file="file://$PROJECT_DIR$/src/DocumentStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="206" column="34" selection-start="8535" selection-end="8535" vertical-scroll-proportion="0.0">
+        <state line="36" column="30" selection-start="952" selection-end="952" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#getAverageDistance#0;class#DocumentStatistics#0" expanded="false" />
+            <element signature="method#getMinDistance#0;class#DocumentStatistics#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DocumentStatistics.java">
+    <entry file="file://$PROJECT_DIR$/src/DocumentSimilarity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="32" selection-start="1614" selection-end="1614" vertical-scroll-proportion="0.5646853">
+        <state line="21" column="39" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Retrieval.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="218" column="83" selection-start="9284" selection-end="9284" vertical-scroll-proportion="-3.879925">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

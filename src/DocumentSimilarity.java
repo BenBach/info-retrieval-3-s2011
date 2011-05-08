@@ -8,11 +8,13 @@ public class DocumentSimilarity implements Comparable<DocumentSimilarity> {
     private int rank;
     private String targetDocument;
     private String index;
+    private String className;
 
-    public DocumentSimilarity(double distance, String targetDocument, String index) {
+    public DocumentSimilarity(double distance, String targetDocument, String className, String index) {
         this.distance = distance;
         this.targetDocument = targetDocument;
         this.index = index;
+        this.className = className;
     }
 
     public int getRank() {
@@ -55,5 +57,13 @@ public class DocumentSimilarity implements Comparable<DocumentSimilarity> {
                 Objects.equal(rank, other.rank) &&
                 Objects.equal(targetDocument, other.targetDocument) &&
                 Objects.equal(index, other.index);
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }
