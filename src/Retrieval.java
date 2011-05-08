@@ -157,6 +157,7 @@ public class Retrieval {
 
             // document -> similarity
             Multimap<String, DocumentSimilarity> documentToSimilarity = HashMultimap.create();
+            Multimap<String, >
 
             for (int i = 0; i < k; i++) {
                 System.out.print(String.format("#%3d ", i));
@@ -182,7 +183,7 @@ public class Retrieval {
                 System.out.println();
             }
 
-            System.out.println(String.format("\n%-40.40s %-7.7s %-15.15s %-15.15s", "document", "#occur", "avg rank",
+            System.out.println(String.format("\n%-70.70s %-7.7s %-15.15s %-15.15s", "document", "#occur", "avg rank",
                     "avg dist"));
             List<DocumentStatistics> statistics = Lists.newArrayList();
 
@@ -212,13 +213,13 @@ public class Retrieval {
             });
 
             for (DocumentStatistics stats : statistics.subList(0, Math.min(k * 5, statistics.size()))) {
-                System.out.println(String.format("%-40.40s %7d %15.3f %15.3f", stats.getDocument(),
+                System.out.println(String.format("%-70.70s %7d %15.3f %15.3f", stats.getDocument(),
                         stats.getNumberOfOccurrences(), stats.getAverageRank(), stats.getAverageDistance()));
             }
 
             for (DocumentStatistics stats : statistics.subList(Math.min(k * 5, statistics.size()), statistics.size())) {
                 if (stats.getNumberOfOccurrences() < indices.size()) {
-                    System.out.println(String.format("%-40.40s %7d %15.3f %15.3f", stats.getDocument(),
+                    System.out.println(String.format("%-70.70s %7d %15.3f %15.3f", stats.getDocument(),
                             stats.getNumberOfOccurrences(), stats.getAverageRank(), stats.getAverageDistance()));
                 }
             }

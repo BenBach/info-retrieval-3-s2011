@@ -12,6 +12,8 @@ public class DocumentStatistics implements Comparable<DocumentStatistics> {
     private List<Double> distances;
     private double averageRank = -1.0;
     private double averageDistance = -1.0;
+    private double minDistance = -1.0;
+    private double maxDistance = -1.0;
 
     public DocumentStatistics(String document)
     {
@@ -58,6 +60,39 @@ public class DocumentStatistics implements Comparable<DocumentStatistics> {
 
         return averageDistance;
     }
+
+        public double getMinDistance() {
+        if (minDistance > -1) return minDistance;
+
+        minDistance = 0;
+
+        for (Double distance : distances)
+        {
+              if(minDistance > distance)
+                  minDistance = distance;
+        }
+
+        distances = null;
+
+        return minDistance;
+    }
+
+        public double getMaxDistance() {
+        if (maxDistance > -1) return maxDistance;
+
+        maxDistance = 0;
+
+        for (Double distance : distances)
+        {
+              if(maxDistance < distance)
+                  maxDistance = distance;
+        }
+
+        distances = null;
+
+        return maxDistance;
+    }
+
 
     public int getNumberOfOccurrences() {
         return numberOfOccurrences;
