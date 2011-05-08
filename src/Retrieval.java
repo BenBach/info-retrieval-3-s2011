@@ -22,20 +22,14 @@ public class Retrieval {
     @Option(name = "-i", aliases = {"--index"}, multiValued = true, required = false, usage = "the indices to be used")
     private List<String> indicesNames;
     private List<File> indices;
-    @SuppressWarnings({"MismatchedQueryAndUpdateOfCollection"})
-    @Argument(multiValued = true, required = true, index = 0, usage = "the names of the query documents",
-            metaVar = "QUERY")
-    private List<String> queryDocuments;
+
     @Option(name = "-k", required = false, usage = "the number k of to-be-retrieved documents")
-    private int k = 5;
+    private int k = 7;
     @Option(name = "-m", aliases = {"--measure"}, required = false,
             usage = "the similarity function to be used for similarity retrieval")
     private SimilarityMeasure similarityMeasure = SimilarityMeasure.L1;
     private Attribute classAttribute = null;
     private Attribute documentAttribute = null;
-    @SuppressWarnings({"FieldCanBeLocal"})
-    @Option(name = "-q", aliases = {"--query"}, required = false, usage = "if a query should be used")
-    private boolean queryWords = false;
 
     public void query() throws Exception {
         setupIndices();
@@ -250,10 +244,10 @@ public class Retrieval {
     }
 
     public void run() throws Exception {
-        if (queryWords) {
-            query();
-            return;
-        }
+//        if (queryWords) {
+//            query();
+//            return;
+//        }
 
         setupIndices();
         printProgramStatus();

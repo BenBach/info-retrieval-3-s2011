@@ -63,7 +63,7 @@ public class DocumentStatistics implements Comparable<DocumentStatistics> {
         return numberOfOccurrences;
     }
 
-    @Override
+
     public int compareTo(DocumentStatistics o) {
         int result;
 
