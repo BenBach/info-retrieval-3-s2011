@@ -56,7 +56,7 @@ public class DocumentStatistics implements Comparable<DocumentStatistics> {
             averageDistance += distance;
 
         averageDistance /= distances.size();
-        distances = null;
+        //distances = null;
 
         return averageDistance;
     }
@@ -64,7 +64,7 @@ public class DocumentStatistics implements Comparable<DocumentStatistics> {
         public double getMinDistance() {
         if (minDistance > -1) return minDistance;
 
-        minDistance = 0;
+        minDistance = Double.MAX_VALUE;
 
         for (Double distance : distances)
         {
@@ -72,7 +72,7 @@ public class DocumentStatistics implements Comparable<DocumentStatistics> {
                   minDistance = distance;
         }
 
-        distances = null;
+        //distances = null;
 
         return minDistance;
     }
@@ -88,7 +88,7 @@ public class DocumentStatistics implements Comparable<DocumentStatistics> {
                   maxDistance = distance;
         }
 
-        distances = null;
+        //distances = null;
 
         return maxDistance;
     }

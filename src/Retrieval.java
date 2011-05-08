@@ -157,19 +157,30 @@ public class Retrieval {
 
             // document -> similarity
             Multimap<String, DocumentSimilarity> documentToSimilarity = HashMultimap.create();
-            Multimap<String, >
+
+            // index -> similarity
+            HashMap<String, DocumentStatistics> indexStatistics = new HashMap();
+
 
             for (int i = 0; i < k; i++) {
                 System.out.print(String.format("#%3d ", i));
 
+
+
                 for (File index : indices) {
                     List<DocumentSimilarity> documentSimilarities = indexResults.get(index.getName());
+
+                    DocumentStatistics statisticsPerIndex = indexStatistics.get(index.toString());
+
+                    if(statisticsPerIndex == null)
+                        statisticsPerIndex = new DocumentStatistics(index.toString());
 
                     if (documentSimilarities == null) {
                         System.err.println("No similarities for index " + index.getName());
                         for (int j = 0; j < 42; j++) System.out.print(' ');
                         continue;
                     }
+
 
                     for (DocumentSimilarity documentSimilarity : documentSimilarities) {
                         documentToSimilarity.put(documentSimilarity.getTargetDocument(), documentSimilarity);
@@ -178,10 +189,36 @@ public class Retrieval {
                     DocumentSimilarity similarity = documentSimilarities.get(i);
                     System.out.print(String.format("%-30.30s %10.6f ", similarity.getTargetDocument(),
                             similarity.getDistance()));
+
+                    statisticsPerIndex.addState(0, similarity.getDistance());
+                    indexStatistics.put(index.toString(), statisticsPerIndex);
                 }
 
                 System.out.println();
             }
+
+            System.out.println("Distances:");
+
+            double minDist = 0.0;
+            double maxDist = 0.0;
+            double avgDist = 0.0;
+
+            for(DocumentStatistics statsForOneIndex : indexStatistics.values())
+            {
+                System.out.println("Index: " + statsForOneIndex.getDocument() + " Min: " + statsForOneIndex.getMinDistance() + " Max: "
+                        + statsForOneIndex.getMaxDistance() + " Avg: " + statsForOneIndex.getAverageDistance());
+
+               minDist = statsForOneIndex.getMinDistance();
+               maxDist = statsForOneIndex.getMaxDistance();
+               avgDist = statsForOneIndex.getAverageDistance();
+            }
+
+             System.out.println("Average - " + " Min: " + minDist + " Max: "
+                        + maxDist + " Avg: " + avgDist );
+
+              System.out.println();
+            System.out.println();
+            System.out.println();
 
             System.out.println(String.format("\n%-70.70s %-7.7s %-15.15s %-15.15s", "document", "#occur", "avg rank",
                     "avg dist"));
