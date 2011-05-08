@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="Information Retrieval - Task 3">
+    <path id="ir3.classpath">
+        <pathelement location="build"/>
+        <pathelement location="lib/args4j-2.0.16.jar"/>
+        <pathelement location="lib/weka.jar"/>
+        <pathelement location="lib/guava-r09.jar"/>
+        <pathelement location="lib/ant.jar"/>
+    </path>
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+    <target name="build">
+        <mkdir dir="build"/>
+        <javac debug="true" debuglevel="source,lines,vars" destdir="build" includeantruntime="false" source="1.6"
+               target="1.6">
+            <src path="src"/>
+            <classpath refid="ir3.classpath"/>
+        </javac>
+    </target>
+    <target name="package" depends="build">
+        <jar destfile="retrieval.jar" basedir="build/">
+            <manifest>
+                <attribute name="Main-Class" value="Retrieval"/>
+            </manifest>
+            <zipgroupfileset dir="lib/" includes="*.jar"/>
+        </jar>
+    </target>
+    <target name="run" depends="build">
+        <java classname="Retrieval" failonerror="true" fork="yes">
+            <classpath refid="ir3.classpath"/>
+        </java>
+    </target>
+</project>
