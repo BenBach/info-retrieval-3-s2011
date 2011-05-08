@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="951fd592-9dc2-4dc0-9fd4-05cd84abd370" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiment/Result_ISMI.arff" afterPath="$PROJECT_DIR$/experiment/Result_ISMI.arff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/info-retrieval-3-s2011.ipr" afterPath="$PROJECT_DIR$/info-retrieval-3-s2011.ipr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/Retrieval$1.class" afterPath="$PROJECT_DIR$/build/Retrieval$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/Retrieval$2.class" afterPath="$PROJECT_DIR$/build/Retrieval$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/Retrieval.class" afterPath="$PROJECT_DIR$/build/Retrieval.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/ISMI_output/ISMI.rh.arff" afterPath="$PROJECT_DIR$/features/ISMI_output/ISMI.rh.arff" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/ISMI_output/ISMI.rp.arff" afterPath="$PROJECT_DIR$/features/ISMI_output/ISMI.rp.arff" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/ISMI_output/ISMI.ssd.arff" afterPath="$PROJECT_DIR$/features/ISMI_output/ISMI.ssd.arff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/info-retrieval-3-s2011.iws" afterPath="$PROJECT_DIR$/info-retrieval-3-s2011.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Retrieval.java" afterPath="$PROJECT_DIR$/src/Retrieval.java" />
     </list>
     <ignored path="info-retrieval-3-s2011.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,6 +28,21 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <line_breakpoints>
+      <breakpoint url="file://$PROJECT_DIR$/src/Retrieval.java" line="234" class="Retrieval" package="">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -66,7 +86,7 @@
       <file leaf-file-name="DocumentStatistics.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DocumentStatistics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="47" selection-start="383" selection-end="383" vertical-scroll-proportion="0.0">
+            <state line="9" column="66" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -75,7 +95,7 @@
       <file leaf-file-name="Retrieval.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Retrieval.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="51" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.42490843">
+            <state line="238" column="42" selection-start="10374" selection-end="10374" vertical-scroll-proportion="5.364469">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,7 +106,7 @@
       <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="1130" selection-end="1130" vertical-scroll-proportion="0.0">
+            <state line="18" column="64" selection-start="775" selection-end="775" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -245,10 +265,11 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
+    <property name="dynamic.classpath" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Retrieval">
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -282,7 +303,7 @@
     <configuration default="true" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Retrieval" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="&quot;features/ISMI_output_without_labels/*.arff&quot; -k 7 -m L2 " />
+      <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -292,7 +313,7 @@
       <module name="info-retrieval-3-s2011" />
       <envs />
       <method>
-        <option name="AntTarget" enabled="true" />
+        <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/build.xml" target="run" />
         <option name="BuildArtifacts" enabled="false" />
         <option name="Make" enabled="true" />
         <option name="Maven.BeforeRunTask" enabled="false" />
@@ -343,7 +364,33 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <list size="0" />
+    <configuration default="false" name="Retrieval" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Retrieval" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="-i &quot;features/ISMI_output/ISMI.rh.arff,features/ISMI_output/ISMI.rp.arff,features/ISMI_output/ISMI.ssd.arff&quot; -k 7 -m L2 " />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="info-retrieval-3-s2011" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="5415" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/build.xml" target="build" />
+      </method>
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Application.Retrieval" />
+    </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -401,16 +448,16 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24973261" sideWeight="0.6707589" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39955357" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924107" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2090909" sideWeight="0.22544643" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2090909" sideWeight="0.43638393" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924107" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -476,11 +523,6 @@
         <state line="118" column="15" selection-start="5689" selection-end="5689" vertical-scroll-proportion="0.84313726" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DocumentSimilarity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="12" selection-start="795" selection-end="795" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SimilarityMeasure.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="12" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" />
@@ -488,21 +530,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DocumentStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="47" selection-start="383" selection-end="383" vertical-scroll-proportion="0.0">
+        <state line="9" column="66" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DocumentSimilarity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="12" selection-start="795" selection-end="795" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="1130" selection-end="1130" vertical-scroll-proportion="0.0">
+        <state line="18" column="64" selection-start="775" selection-end="775" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Retrieval.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="51" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.42490843">
+        <state line="238" column="42" selection-start="10374" selection-end="10374" vertical-scroll-proportion="5.364469">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

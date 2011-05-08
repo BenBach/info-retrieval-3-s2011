@@ -164,7 +164,7 @@
 @ATTRIBUTE feature159	NUMERIC
 @ATTRIBUTE feature160	NUMERIC
 @ATTRIBUTE feature161	NUMERIC
-@ATTRIBUTE instanceName string
+@ATTRIBUTE documentName string
 @ATTRIBUTE class {'Tango','Rumba','Jive','VienneseWaltz','SlowWaltz','Samba','Quickstep','ChaChaCha'}
 
 @DATA
