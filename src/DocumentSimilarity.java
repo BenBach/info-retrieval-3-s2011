@@ -35,7 +35,7 @@ public class DocumentSimilarity implements Comparable<DocumentSimilarity> {
         return index;
     }
 
-
+   @Override
     public int compareTo(DocumentSimilarity o) {
         return Double.compare(distance, o.distance);
     }
