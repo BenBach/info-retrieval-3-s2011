@@ -1,0 +1,87 @@
+General Information
+
+
+
+The same guidelines as for the previous two assignments apply:
+Your program should be written in Java.
+Common libs are allowed (e.g. the Weka API for reading ARFF files).
+In case you're not sure whether or not to use a particular library, please ask in TUWEL forum.
+
+Apart from that, implementation details as well as infrastructure (OS, build system, ...) are up to you.
+
+Your submission shall include
+the program (incl. all its dependencies, e.g. libraries)
+A short README on how to start it
+the output of your similarity retrieval program (ASCII or HTML)
+the output of WEKA
+a report that documents the results and findings from this assignment 
+Use a value of 7 for k (the number of returned results) in your experiments.
+Task
+
+
+In this assignment, you shall extend your retrieval system from assignment 2, and apply it to new types of features. Further, you shall perform basic experiments with classification.
+
+Features
+
+
+The new types of features are from the audio domain. Specifically, you shall extract RP, RH and SSD features from two audio collections, using the feature extraction software provided by us. The software is available in Java and Matlab.
+
+You can find the audio collections at: 
+http://olymp.ifs.tuwien.ac.at/audiofeature/temp/GTZAN_mp3_22khz.zip (386 MB)
+http://olymp.ifs.tuwien.ac.at/audiofeature/temp/ISMIRrhythm_mp3_44khz_mono.zip (161 MB)
+Alternatively, if you cannot download the files easily, you can also collect the collections at the Institute (bring a USB stick or external hard disk; please arrange an appointment with mayer@ifs.tuwien and lidy@ifs.tuwien.ac.at)
+
+Mind that the audio collections are *not* publicly available; thus, you are kindly asked to not redistribute them. 
+
+The feature extraction software is available in two flavours:
+Java: http://www.ifs.tuwien.ac.at/mir/audiofeatureextraction-java/
+The Java audio feature extraction can write files in multiple formats, including ARFF. For ARFF Files, the class information will be computed from the directory structure of the collection.
+Matlab: http://www.ifs.tuwien.ac.at/mir/downloads.html
+The Matlab version will write the features in the SOMLib file format; from this representation, you will need to convert it to WEKA ARFF, and also include the below mentioned class assignment. 
+You can do this in two ways: 
+With a perl script, provided at http://www.ifs.tuwien.ac.at/mir/howtos.html#classification
+Using the Java SOMToolbox and the InputDataFileFormatConverter, described at http://www.ifs.tuwien.ac.at/dm/somtoolbox/somtoolbox-reference.html#InputDataFileFormatConverter
+
+Class (genre) assignments for the collections are available in 
+http://olymp.ifs.tuwien.ac.at/audiofeature/temp/filelist_GTZAN_mp3_wclasses.txt 
+http://olymp.ifs.tuwien.ac.at/audiofeature/temp/filelist_ISMIRrhythm_mp3_wclasses.txt
+Similarity Retrieval
+
+
+You should extend your system to collect new statistical analysis on the retrieved results. Moreover, you should perform an evaluation over *all* documents in the test collections provided, instead of having a set of query documents.
+
+Use a value of 7 for k (the number of returned results) in your experiments.
+
+Additionally to the analysis in your second assignment, extend your retrieval system to process all of the containing documents (music pieces), and also record and analyse:
+
+per query document:
+the statistics you already produced in assignment 2
+the min/max/avg distances over the k retrieved documents
+a merged result list; if you have e.g. three feature sets, and you retrieve k documents from each, you most likely will end up with three different results, and a total number of >= k documents. You shall think of a way to unify the information from all three lists into one final result list; we don't demand a specific solution, but you shall argue in your report why you chose your solution.
+For a selected set of 10 (randomly chosen) queries, compare the results of the merged result list with those of the single feature sets. Include and describe this comparison in the report.
+over all query documents
+the min/max/avg distances averaged over all documents in a specific set
+how often a document ocurrs in all the result lists provided by all other documents.
+I.e. if you have n documents, and you don't show a document in the result list where you use that document as a query, then there are n-1 queries that could potentially retrieve a document.
+Record how many times l <= (n-1) a document appears. Compute this statistic for each of the result lists (i.e. each feature set, and also the merged result list if you cut that one of at k documents as well).
+Genre Classification
+
+
+Both datasets are labelled with musical genres, and the second task is thus to perform musical genre classification with WEKA (http://www.cs.waikato.ac.nz/ml/weka/).
+
+Use the Weka Experimenter for this evaluation. Make 2 experiments: one per audio collection. Select New. Select ARFF File as Results Destination and choose a filename. Keep the standard settings for 10-fold cross validation, 10 iterations. 
+Add the 3 audio feature sets as Datasets. Then add algorithms: 
+
+You shall perform experiments with all audio feature sets extracted, and with the following classification algorithms:
+k-NN (in Weka: lazy.IbK)
+Support Vector Machines (in Weka: functions.SMO)
+Random Forests (in Weka: trees.RandomForest)
+
+
+Select each of the above classifiers at least *three times* and modify the parameter settings each time as you like (e.g. k and the distance measure in k-NN), to generate 9 algorithm variants in total.
+
+Change to the register "Run" and press Start to run the algorithm and dataset iteration. When finished change to the register "Analyze", press Experiment and Perform test. 
+
+Include the output table in your report and examine, analyse and summarize the achieved results.
+
+Also save the Weka Experimenter output to a text file using "Save output". Include both this text file and the generated .ARFF files in your submission.
