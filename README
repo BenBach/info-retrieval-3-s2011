@@ -23,7 +23,7 @@ options
 			  
     -k    the k parameter
               optional, one occurrence max.
-              if the parameter is omitted the value 5 is used.
+              if the parameter is omitted the value 7 is used.
     -m    the distance measure to be used (either L1 or L2)
               optional, one occurrence max.
               if the parameter is omitted the value L1 is used.
