@@ -10,6 +10,7 @@ import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
 
+import javax.swing.text.Document;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.*;
@@ -134,6 +135,9 @@ public class Retrieval {
 
                     // document -> similarity PER CLASS
             HashMap<String, DocumentStatistics> documentToStatisticsPerClass = new HashMap();
+
+          // document -> similarity PER CLASS
+            HashMap<String, DocumentOccurrences> docOccurrences = new HashMap();
 
         for (Map.Entry<String, Map<String, List<DocumentSimilarity>>> queryIndexMap : table.rowMap().entrySet()) {
             String query = queryIndexMap.getKey();
@@ -325,9 +329,25 @@ public class Retrieval {
                      }
             });
 
+            for(DocumentSimilarity sim : documentToSimilarityMerged)
+            {
+                DocumentOccurrences value = docOccurrences.get(sim.getTargetDocument());
+
+                if(value == null)
+                {
+                    value = new DocumentOccurrences(sim.getTargetDocument(), 0);
+                }
+
+                value.increaseOccurrence();
+
+                docOccurrences.put(sim.getTargetDocument(), value);
+            }
+
+
+
 
             // ------------------
-            System.out.println("\n\n\n Merged Result List:");
+            System.out.println("\nMerged Result List:");
             for(int c = 0; c < k; c++)
             {
                 DocumentSimilarity sim = documentToSimilarityMerged.get(c) ;
@@ -381,16 +401,44 @@ public class Retrieval {
 
 
         }
-                    // Print average distances
-
+            // Print average distances
             System.out.println("\n\n\n Distances per class:");
             for(DocumentStatistics stat : documentToStatisticsPerClass.values())
             {
                   System.out.println("Class: " + stat.getDocument() + " Min: " + stat.getMinDistance() + " Max: "
                         + stat.getMaxDistance() + " Avg: " + stat.getAverageDistance());
             }
-    }
 
+            // Print Occurences
+            System.out.println("\n\n\nOccurrences of documents in other result lists:");
+
+            ArrayList<DocumentOccurrences> occurrences = new ArrayList<DocumentOccurrences>(docOccurrences.values());
+            Collections.sort(occurrences, new Comparator<DocumentOccurrences>() {
+                @Override
+                public int compare(DocumentOccurrences o1, DocumentOccurrences o2) {
+                    int result = Double.compare(o1.getOccurrences(), o2.getOccurrences());
+
+                    return result;
+                }
+            });
+
+            for(DocumentOccurrences occurrence : occurrences)
+            {
+                System.out.println("Document: " + occurrence.getDocumentName() + "Occurrences: " + occurrence.getOccurrences());
+            }
+
+
+//        Iterator i = docOccurrences.entrySet().iterator();
+//        ArrayList<Map.Entry<String, Integer>> entries = new ArrayList();
+//         while(i.hasNext()) {
+//                Map.Entry<String, Integer> result = (Map.Entry<String, Integer>)i.next();
+//                String key = result.getKey();
+//                Integer val = result.getValue();
+//                 entries.add(result);
+//             System.out.println("Document: " + key + "Occurrences: " + val.toString());
+//         }
+
+    }
 
     private String getInstanceName(Instance instance) {
         return instance.toString(classAttribute) + "/" + instance.toString(documentAttribute);
