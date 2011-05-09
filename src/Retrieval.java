@@ -2,7 +2,6 @@ import com.google.common.base.CharMatcher;
 import com.google.common.base.Splitter;
 import com.google.common.collect.*;
 import org.apache.tools.ant.DirectoryScanner;
-import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
@@ -10,8 +9,6 @@ import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
-import weka.filters.Filter;
-import weka.filters.unsupervised.attribute.NumericToBinary;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -163,9 +160,11 @@ public class Retrieval {
             // document -> similarity
             Multimap<String, DocumentSimilarity> documentToSimilarity = HashMultimap.create();
 
+            // document -> similarity - Merged
+            ArrayList<DocumentSimilarity> documentToSimilarityMerged = new ArrayList();
+
             // index -> similarity
             HashMap<String, DocumentStatistics> indexStatistics = new HashMap();
-
 
 
 
@@ -194,6 +193,10 @@ public class Retrieval {
                     }
 
                     DocumentSimilarity similarity = documentSimilarities.get(i);
+
+
+
+
                     System.out.print(String.format("%-30.30s %10.6f ", similarity.getTargetDocument(),
                             similarity.getDistance()));
 
@@ -203,6 +206,9 @@ public class Retrieval {
 
                 System.out.println();
             }
+
+
+
 
             String queryClass = query.split("/", 2)[0];
 
@@ -220,7 +226,6 @@ public class Retrieval {
 
                                 documentToStatisticsPerClass.put(queryClass, statisticsPerClass);
                             }
-                            //documentToStatisticsPerClass.put(queryClass, documentSimilarity);
                         }
                 }
 
@@ -230,23 +235,107 @@ public class Retrieval {
             double minDist = 0.0;
             double maxDist = 0.0;
             double avgDist = 0.0;
+            int numberIndices = 0;
+
+            HashMap<String, DistanceStatistics> distStats = new HashMap();
 
             for(DocumentStatistics statsForOneIndex : indexStatistics.values())
             {
+                numberIndices++;
                 System.out.println("Index: " + statsForOneIndex.getDocument() + " Min: " + statsForOneIndex.getMinDistance() + " Max: "
                         + statsForOneIndex.getMaxDistance() + " Avg: " + statsForOneIndex.getAverageDistance());
 
-               minDist = statsForOneIndex.getMinDistance();
-               maxDist = statsForOneIndex.getMaxDistance();
-               avgDist = statsForOneIndex.getAverageDistance();
+               minDist += statsForOneIndex.getMinDistance();
+               maxDist += statsForOneIndex.getMaxDistance();
+               avgDist += statsForOneIndex.getAverageDistance();
+
+               distStats.put(statsForOneIndex.getDocument(), new DistanceStatistics(statsForOneIndex.getMinDistance(), statsForOneIndex.getMaxDistance(), statsForOneIndex.getAverageDistance()));
             }
 
-             System.out.println("Average - " + " Min: " + minDist + " Max: "
+            minDist += minDist / numberIndices;
+            maxDist += maxDist / numberIndices;
+            avgDist += avgDist / numberIndices;
+
+            System.out.println("Average - " + " Min: " + minDist + " Max: "
                         + maxDist + " Avg: " + avgDist );
 
               System.out.println();
             System.out.println();
             System.out.println();
+
+
+             // Merged Result List
+
+
+                for (File index : indices) {
+                    List<DocumentSimilarity> documentSimilarities = indexResults.get(index.getName());
+
+                    for (DocumentSimilarity documentSimilarity : documentSimilarities) {
+                        if(documentSimilarity.getRank() <= k)
+                        {
+                            documentSimilarity.setDistance(distanceNormalization(documentSimilarity.getDistance(), distStats.get(index.toString()).getMinDistance(), distStats.get(index.toString()).getMaxDistance()));
+
+                            if(documentSimilarity.getDistance() <= 1.0 && documentSimilarity.getDistance() >= 0.0)
+                                documentToSimilarityMerged.add(documentSimilarity);
+                        }
+                    }
+                }
+
+               // remove duplicates
+            ArrayList<Integer> toDelete= new ArrayList(documentToSimilarityMerged.size());
+            ;
+
+
+               for(int c = 0; c < documentToSimilarityMerged.size(); c++)
+               {
+                   DocumentSimilarity sim1 = documentToSimilarityMerged.get(c) ;
+                   for(int d = c+1; d < documentToSimilarityMerged.size(); d++)
+                   {
+                       DocumentSimilarity sim2 = documentToSimilarityMerged.get(d) ;
+                       if(sim1.getTargetDocument().equals(sim2.getTargetDocument()))
+                       {
+                           if(sim1.getDistance() < sim2.getDistance())
+                           {
+                               if(!toDelete.contains(d))toDelete.add(d);
+                               //documentToSimilarityMergedTmp.remove(d);
+                           }
+                           else
+                           {
+                               //documentToSimilarityMergedTmp.remove(c);
+                               if(!toDelete.contains(c))toDelete.add(c);
+                           }
+                       }
+                   }
+               }
+
+                Collections.sort(toDelete);
+
+               for(int c = 0; c < toDelete.size(); c++)
+               {
+                    documentToSimilarityMerged.remove(toDelete.get(c).intValue()-c);
+               }
+
+              // sort
+               Collections.sort(documentToSimilarityMerged, new Comparator<DocumentSimilarity>() {
+                @Override
+                public int compare(DocumentSimilarity o1, DocumentSimilarity o2) {
+                        int result = Double.compare(o1.getDistance(), o2.getDistance());
+
+                        return result;
+                     }
+            });
+
+
+            // ------------------
+            System.out.println("\n\n\n Merged Result List:");
+            for(int c = 0; c < k; c++)
+            {
+                DocumentSimilarity sim = documentToSimilarityMerged.get(c) ;
+                System.out.println(String.format("%d %-70.70s %10.6f ", c+1, sim.getTargetDocument(),
+                                sim.getDistance()));
+            }
+            System.out.println();
+
 
             System.out.println(String.format("\n%-70.70s %-7.7s %-15.15s %-15.15s", "document", "#occur", "avg rank",
                     "avg dist"));
@@ -309,6 +398,11 @@ public class Retrieval {
 
     private String getClassName(Instance instance) {
         return instance.toString(classAttribute);
+    }
+
+    private double distanceNormalization(double distance, double distanceMin, double distanceMax)
+    {
+        return ((distance - distanceMin) / (distanceMax - distanceMin));
     }
 
     private void setupIndices() {

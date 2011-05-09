@@ -29,6 +29,10 @@ public class DocumentSimilarity implements Comparable<DocumentSimilarity> {
         return distance;
     }
 
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
     public String getTargetDocument() {
         return targetDocument;
     }

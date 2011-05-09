@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="951fd592-9dc2-4dc0-9fd4-05cd84abd370" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/DistanceStatistics.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/DocumentSimilarity.class" afterPath="$PROJECT_DIR$/build/DocumentSimilarity.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/Retrieval$1.class" afterPath="$PROJECT_DIR$/build/Retrieval$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/Retrieval$2.class" afterPath="$PROJECT_DIR$/build/Retrieval$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/Retrieval.class" afterPath="$PROJECT_DIR$/build/Retrieval.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/info-retrieval-3-s2011.iws" afterPath="$PROJECT_DIR$/info-retrieval-3-s2011.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DocumentSimilarity.java" afterPath="$PROJECT_DIR$/src/DocumentSimilarity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Retrieval.java" afterPath="$PROJECT_DIR$/src/Retrieval.java" />
     </list>
@@ -27,7 +29,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/Retrieval.java" line="227" class="Retrieval" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/Retrieval.java" line="339" class="Retrieval" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -40,7 +42,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/Retrieval.java" line="211" class="Retrieval" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/Retrieval.java" line="318" class="Retrieval" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -109,7 +111,7 @@
       <file leaf-file-name="Retrieval.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Retrieval.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="218" column="83" selection-start="9284" selection-end="9284" vertical-scroll-proportion="-3.879925">
+            <state line="362" column="42" selection-start="15190" selection-end="15190" vertical-scroll-proportion="0.5487288">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -117,10 +119,28 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ArrayList.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://C:/jdk1.6.0_23/src.zip!/java/util/ArrayList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="386" column="0" selection-start="14261" selection-end="14261" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DistanceStatistics.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DistanceStatistics.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="5" selection-start="712" selection-end="712" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="DocumentSimilarity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DocumentSimilarity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="39" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0">
+            <state line="54" column="116" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -149,9 +169,9 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/DistanceStatistics.java" />
         <option value="$PROJECT_DIR$/src/DocumentStatistics.java" />
         <option value="$PROJECT_DIR$/src/DocumentSimilarity.java" />
+        <option value="$PROJECT_DIR$/src/DistanceStatistics.java" />
         <option value="$PROJECT_DIR$/src/Retrieval.java" />
       </list>
     </option>
@@ -223,6 +243,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="info-retrieval-3-s2011" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="info-retrieval-3-s2011" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="info-retrieval-3-s2011" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -425,17 +459,17 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25187165" sideWeight="0.6707589" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39732143" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2513369" sideWeight="0.6026786" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39732143" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2090909" sideWeight="0.5089286" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2090909" sideWeight="0.23549107" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2090909" sideWeight="0.15290178" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2090909" sideWeight="0.35825893" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924107" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -506,6 +540,13 @@
         <state line="18" column="64" selection-start="775" selection-end="775" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/guava-r09.jar!/com/google/common/collect/HashMultimap.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="19" selection-start="252" selection-end="252" vertical-scroll-proportion="0.21564482">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SimilarityMeasure.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="12" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" />
@@ -521,16 +562,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DistanceStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="5" selection-start="712" selection-end="712" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DocumentSimilarity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="39" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0">
+        <state line="54" column="116" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/jdk1.6.0_23/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="386" column="0" selection-start="14261" selection-end="14261" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Retrieval.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="218" column="83" selection-start="9284" selection-end="9284" vertical-scroll-proportion="-3.879925">
+        <state line="362" column="42" selection-start="15190" selection-end="15190" vertical-scroll-proportion="0.5487288">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
