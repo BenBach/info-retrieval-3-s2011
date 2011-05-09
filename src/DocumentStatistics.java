@@ -3,8 +3,8 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
-* @author patrick
-*/
+ * @author patrick
+ */
 public class DocumentStatistics implements Comparable<DocumentStatistics> {
     private String document;
     private int numberOfOccurrences;
@@ -15,8 +15,7 @@ public class DocumentStatistics implements Comparable<DocumentStatistics> {
     private double minDistance = -1.0;
     private double maxDistance = -1.0;
 
-    public DocumentStatistics(String document)
-    {
+    public DocumentStatistics(String document) {
         this.document = document;
         numberOfOccurrences = 0;
         ranks = Lists.newArrayList();
@@ -56,39 +55,30 @@ public class DocumentStatistics implements Comparable<DocumentStatistics> {
             averageDistance += distance;
 
         averageDistance /= distances.size();
-        //distances = null;
 
         return averageDistance;
     }
 
-        public double getMinDistance() {
+    public double getMinDistance() {
         if (minDistance > -1) return minDistance;
 
         minDistance = Double.MAX_VALUE;
 
         for (Double distance : distances)
-        {
-              if(minDistance > distance)
-                  minDistance = distance;
-        }
-
-        //distances = null;
+            if (minDistance > distance)
+                minDistance = distance;
 
         return minDistance;
     }
 
-        public double getMaxDistance() {
+    public double getMaxDistance() {
         if (maxDistance > -1) return maxDistance;
 
         maxDistance = 0;
 
         for (Double distance : distances)
-        {
-              if(maxDistance < distance)
-                  maxDistance = distance;
-        }
-
-        //distances = null;
+            if (maxDistance < distance)
+                maxDistance = distance;
 
         return maxDistance;
     }
@@ -98,15 +88,15 @@ public class DocumentStatistics implements Comparable<DocumentStatistics> {
         return numberOfOccurrences;
     }
 
-        @Override
+    @Override
     public int compareTo(DocumentStatistics o) {
         int result;
 
         result = o.getNumberOfOccurrences() - getNumberOfOccurrences();
-        if(result != 0.0) return result;
+        if (result != 0.0) return result;
 
         result = Double.compare(getAverageRank(), o.getAverageRank());
-        if(result != 0.0) return result;
+        if (result != 0.0) return result;
 
         result = Double.compare(getAverageDistance(), o.getAverageDistance());
         return result;

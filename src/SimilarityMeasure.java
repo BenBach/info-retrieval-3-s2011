@@ -3,8 +3,8 @@ import weka.core.EuclideanDistance;
 import weka.core.ManhattanDistance;
 
 /**
-* @author patrick
-*/
+ * @author patrick
+ */
 public enum SimilarityMeasure {
     L1(new ManhattanDistance()),
     L2(new EuclideanDistance());

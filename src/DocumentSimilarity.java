@@ -1,8 +1,8 @@
 import com.google.common.base.Objects;
 
 /**
-* @author patrick
-*/
+ * @author patrick
+ */
 public class DocumentSimilarity implements Comparable<DocumentSimilarity> {
     private double distance;
     private int rank;
@@ -41,7 +41,7 @@ public class DocumentSimilarity implements Comparable<DocumentSimilarity> {
         return index;
     }
 
-   @Override
+    @Override
     public int compareTo(DocumentSimilarity o) {
         return Double.compare(distance, o.distance);
     }

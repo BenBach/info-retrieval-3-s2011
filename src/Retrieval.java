@@ -10,7 +10,6 @@ import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
 
-import javax.swing.text.Document;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.*;
@@ -29,7 +28,7 @@ public class Retrieval {
     private Attribute classAttribute = null;
     private Attribute documentAttribute = null;
 
-
+    @SuppressWarnings({"ConstantConditions"})
     public void run() throws Exception {
         setupIndices();
         printProgramStatus();
@@ -81,8 +80,7 @@ public class Retrieval {
             while (instances.hasMoreElements()) {
                 Instance instance = (Instance) instances.nextElement();
 
-                String document = getInstanceName(instance);
-
+                // String document = getInstanceName(instance);
                 //if (!queryDocuments.contains(document)) continue;
 
                 documentVectors.add(instance);
@@ -133,14 +131,14 @@ public class Retrieval {
             }
         }
 
-            // document -> similarity PER CLASS
-            HashMap<String, DocumentStatistics> documentToStatisticsPerClass = new HashMap();
+        // document -> similarity PER CLASS
+        Map<String, DocumentStatistics> documentToStatisticsPerClass = Maps.newHashMap();
 
-          // document -> occurrence PER CLASS
-            HashMap<String, DocumentOccurrences> docOccurrences = new HashMap();
+        // document -> occurrence PER CLASS
+        Map<String, DocumentOccurrences> docOccurrences = Maps.newHashMap();
 
-            // document -> occurrence PER Feature List
-            HashMap<String, HashMap<String,DocumentOccurrences>> docOccurrencesPerIndex = new HashMap();
+        // document -> occurrence PER Feature List
+        Map<String, Map<String, DocumentOccurrences>> docOccurrencesPerIndex = Maps.newHashMap();
 
         for (Map.Entry<String, Map<String, List<DocumentSimilarity>>> queryIndexMap : table.rowMap().entrySet()) {
             String query = queryIndexMap.getKey();
@@ -156,36 +154,32 @@ public class Retrieval {
             System.out.println();
 
             System.out.print("-----+");
-            //noinspection UnusedDeclaration
-            for (File index : indices) {
+
+            for (int i = 0, indicesSize = indices.size(); i < indicesSize; i++) {
                 for (int j = 0; j < 41; j++)
                     System.out.print('-');
                 System.out.print('+');
             }
+
             System.out.println();
 
             // document -> similarity
             Multimap<String, DocumentSimilarity> documentToSimilarity = HashMultimap.create();
 
             // document -> similarity - Merged
-            ArrayList<DocumentSimilarity> documentToSimilarityMerged = new ArrayList();
+            ArrayList<DocumentSimilarity> documentToSimilarityMerged = Lists.newArrayList();
 
             // index -> similarity
-            HashMap<String, DocumentStatistics> indexStatistics = new HashMap();
-
-
+            Map<String, DocumentStatistics> indexStatistics = Maps.newHashMap();
 
             for (int i = 0; i < k; i++) {
                 System.out.print(String.format("#%3d ", i));
 
-
-
                 for (File index : indices) {
                     List<DocumentSimilarity> documentSimilarities = indexResults.get(index.getName());
-
                     DocumentStatistics statisticsPerIndex = indexStatistics.get(index.toString());
 
-                    if(statisticsPerIndex == null)
+                    if (statisticsPerIndex == null)
                         statisticsPerIndex = new DocumentStatistics(index.toString());
 
                     if (documentSimilarities == null) {
@@ -194,27 +188,27 @@ public class Retrieval {
                         continue;
                     }
 
-
-                    for (DocumentSimilarity documentSimilarity : documentSimilarities) {
+                    for (DocumentSimilarity documentSimilarity : documentSimilarities)
                         documentToSimilarity.put(documentSimilarity.getTargetDocument(), documentSimilarity);
-                    }
 
                     DocumentSimilarity similarity = documentSimilarities.get(i);
 
-                    // Add to occurence per index
-                    HashMap<String,DocumentOccurrences> occurrencesPerFeature = docOccurrencesPerIndex.get(index.toString());
-                    if(occurrencesPerFeature == null)
-                        occurrencesPerFeature = new HashMap();
+                    // Add to occurrence per index
+                    Map<String, DocumentOccurrences> occurrencesPerFeature =
+                            docOccurrencesPerIndex.get(index.toString());
+
+                    if (occurrencesPerFeature == null)
+                        occurrencesPerFeature = Maps.newHashMap();
 
                     DocumentOccurrences occurrence = occurrencesPerFeature.get(similarity.getTargetDocument());
-                    if(occurrence == null)
+
+                    if (occurrence == null)
                         occurrence = new DocumentOccurrences(similarity.getTargetDocument(), 0);
 
                     occurrence.increaseOccurrence();
 
                     occurrencesPerFeature.put(similarity.getTargetDocument(), occurrence);
                     docOccurrencesPerIndex.put(index.toString(), occurrencesPerFeature);
-
 
                     System.out.print(String.format("%-30.30s %10.6f ", similarity.getTargetDocument(),
                             similarity.getDistance()));
@@ -226,28 +220,23 @@ public class Retrieval {
                 System.out.println();
             }
 
-
-
-
             String queryClass = query.split("/", 2)[0];
 
-                for (File index : indices) {
-                    List<DocumentSimilarity> documentSimilarities = indexResults.get(index.getName());
-                    for (DocumentSimilarity documentSimilarity : documentSimilarities) {
-                            if(documentSimilarity.getClassName().equals(queryClass))
-                            {
-                                DocumentStatistics statisticsPerClass = documentToStatisticsPerClass.get(queryClass);
+            for (File index : indices) {
+                List<DocumentSimilarity> documentSimilarities = indexResults.get(index.getName());
 
-                                if(statisticsPerClass == null)
-                                    statisticsPerClass = new DocumentStatistics(queryClass);
+                for (DocumentSimilarity documentSimilarity : documentSimilarities) {
+                    if (documentSimilarity.getClassName().equals(queryClass)) {
+                        DocumentStatistics statisticsPerClass = documentToStatisticsPerClass.get(queryClass);
 
-                                statisticsPerClass.addState(0, documentSimilarity.getDistance());
+                        if (statisticsPerClass == null)
+                            statisticsPerClass = new DocumentStatistics(queryClass);
 
-                                documentToStatisticsPerClass.put(queryClass, statisticsPerClass);
-                            }
-                        }
+                        statisticsPerClass.addState(0, documentSimilarity.getDistance());
+                        documentToStatisticsPerClass.put(queryClass, statisticsPerClass);
+                    }
                 }
-
+            }
 
             System.out.println("Distances:");
 
@@ -256,124 +245,110 @@ public class Retrieval {
             double avgDist = 0.0;
             int numberIndices = 0;
 
-            HashMap<String, DistanceStatistics> distStats = new HashMap();
+            HashMap<String, DistanceStatistics> distStats = Maps.newHashMap();
 
-            for(DocumentStatistics statsForOneIndex : indexStatistics.values())
-            {
+            for (DocumentStatistics statsForOneIndex : indexStatistics.values()) {
                 numberIndices++;
-                System.out.println("Index: " + statsForOneIndex.getDocument() + " Min: " + statsForOneIndex.getMinDistance() + " Max: "
-                        + statsForOneIndex.getMaxDistance() + " Avg: " + statsForOneIndex.getAverageDistance());
 
-               minDist += statsForOneIndex.getMinDistance();
-               maxDist += statsForOneIndex.getMaxDistance();
-               avgDist += statsForOneIndex.getAverageDistance();
+                System.out.println("Index: " + statsForOneIndex.getDocument() +
+                        " Min: " + statsForOneIndex.getMinDistance() +
+                        " Max: " + statsForOneIndex.getMaxDistance() +
+                        " Avg: " + statsForOneIndex.getAverageDistance());
 
-               distStats.put(statsForOneIndex.getDocument(), new DistanceStatistics(statsForOneIndex.getMinDistance(), statsForOneIndex.getMaxDistance(), statsForOneIndex.getAverageDistance()));
+                minDist += statsForOneIndex.getMinDistance();
+                maxDist += statsForOneIndex.getMaxDistance();
+                avgDist += statsForOneIndex.getAverageDistance();
+
+                distStats.put(statsForOneIndex.getDocument(),
+                        new DistanceStatistics(statsForOneIndex.getMinDistance(), statsForOneIndex.getMaxDistance(),
+                                statsForOneIndex.getAverageDistance()));
             }
 
             minDist = minDist / numberIndices;
             maxDist = maxDist / numberIndices;
             avgDist = avgDist / numberIndices;
 
-            System.out.println("Average - " + " Min: " + minDist + " Max: "
-                        + maxDist + " Avg: " + avgDist );
+            System.out.println("Average - " +
+                    " Min: " + minDist +
+                    " Max: " + maxDist +
+                    " Avg: " + avgDist);
 
             System.out.println();
             System.out.println();
             System.out.println();
 
+            // Merged Result List
 
-             // Merged Result List
+            for (File index : indices) {
+                List<DocumentSimilarity> documentSimilarities = indexResults.get(index.getName());
 
+                for (DocumentSimilarity documentSimilarity : documentSimilarities) {
+                    if (documentSimilarity.getRank() <= k) {
+                        documentSimilarity.setDistance(distanceNormalization(documentSimilarity.getDistance(),
+                                distStats.get(index.toString()).getMinDistance(),
+                                distStats.get(index.toString()).getMaxDistance()));
 
-                for (File index : indices) {
-                    List<DocumentSimilarity> documentSimilarities = indexResults.get(index.getName());
+                        if (documentSimilarity.getDistance() <= 1.0 && documentSimilarity.getDistance() >= 0.0)
+                            documentToSimilarityMerged.add(documentSimilarity);
+                    }
+                }
+            }
 
-                    for (DocumentSimilarity documentSimilarity : documentSimilarities) {
-                        if(documentSimilarity.getRank() <= k)
-                        {
-                            documentSimilarity.setDistance(distanceNormalization(documentSimilarity.getDistance(), distStats.get(index.toString()).getMinDistance(), distStats.get(index.toString()).getMaxDistance()));
+            // remove duplicates
+            List<Integer> toDelete = new ArrayList<Integer>(documentToSimilarityMerged.size());
 
-                            if(documentSimilarity.getDistance() <= 1.0 && documentSimilarity.getDistance() >= 0.0)
-                                documentToSimilarityMerged.add(documentSimilarity);
+            for (int c = 0; c < documentToSimilarityMerged.size(); c++) {
+                DocumentSimilarity sim1 = documentToSimilarityMerged.get(c);
+
+                for (int d = c + 1; d < documentToSimilarityMerged.size(); d++) {
+                    DocumentSimilarity sim2 = documentToSimilarityMerged.get(d);
+
+                    if (sim1.getTargetDocument().equals(sim2.getTargetDocument())) {
+                        if (sim1.getDistance() < sim2.getDistance()) {
+                            if (!toDelete.contains(d)) toDelete.add(d);
+                        } else {
+                            if (!toDelete.contains(c)) toDelete.add(c);
                         }
                     }
                 }
+            }
 
-               // remove duplicates
-            ArrayList<Integer> toDelete= new ArrayList(documentToSimilarityMerged.size());
-            ;
+            Collections.sort(toDelete);
 
+            for (int c = 0; c < toDelete.size(); c++)
+                documentToSimilarityMerged.remove(toDelete.get(c) - c);
 
-               for(int c = 0; c < documentToSimilarityMerged.size(); c++)
-               {
-                   DocumentSimilarity sim1 = documentToSimilarityMerged.get(c) ;
-                   for(int d = c+1; d < documentToSimilarityMerged.size(); d++)
-                   {
-                       DocumentSimilarity sim2 = documentToSimilarityMerged.get(d) ;
-                       if(sim1.getTargetDocument().equals(sim2.getTargetDocument()))
-                       {
-                           if(sim1.getDistance() < sim2.getDistance())
-                           {
-                               if(!toDelete.contains(d))toDelete.add(d);
-                               //documentToSimilarityMergedTmp.remove(d);
-                           }
-                           else
-                           {
-                               //documentToSimilarityMergedTmp.remove(c);
-                               if(!toDelete.contains(c))toDelete.add(c);
-                           }
-                       }
-                   }
-               }
-
-                Collections.sort(toDelete);
-
-               for(int c = 0; c < toDelete.size(); c++)
-               {
-                    documentToSimilarityMerged.remove(toDelete.get(c).intValue()-c);
-               }
-
-              // sort
-               Collections.sort(documentToSimilarityMerged, new Comparator<DocumentSimilarity>() {
+            // sort
+            Collections.sort(documentToSimilarityMerged, new Comparator<DocumentSimilarity>() {
                 @Override
                 public int compare(DocumentSimilarity o1, DocumentSimilarity o2) {
-                        int result = Double.compare(o1.getDistance(), o2.getDistance());
-
-                        return result;
-                     }
+                    return Double.compare(o1.getDistance(), o2.getDistance());
+                }
             });
 
-            for(DocumentSimilarity sim : documentToSimilarityMerged)
-            {
+            for (DocumentSimilarity sim : documentToSimilarityMerged) {
                 DocumentOccurrences value = docOccurrences.get(sim.getTargetDocument());
 
-                if(value == null)
-                {
+                if (value == null)
                     value = new DocumentOccurrences(sim.getTargetDocument(), 0);
-                }
 
                 value.increaseOccurrence();
-
                 docOccurrences.put(sim.getTargetDocument(), value);
             }
 
-
-
-
             // ------------------
             System.out.println("\nMerged Result List:");
-            for(int c = 0; c < k; c++)
-            {
-                DocumentSimilarity sim = documentToSimilarityMerged.get(c) ;
-                System.out.println(String.format("%d %-70.70s %10.6f ", c+1, sim.getTargetDocument(),
-                                sim.getDistance()));
+
+            for (int c = 0; c < k; c++) {
+                DocumentSimilarity sim = documentToSimilarityMerged.get(c);
+                System.out.println(String.format("%d %-70.70s %10.6f ", c + 1, sim.getTargetDocument(),
+                        sim.getDistance()));
             }
+
             System.out.println();
 
-
-            System.out.println(String.format("\n%-70.70s %-7.7s %-15.15s %-15.15s", "document", "#occur", "avg rank",
-                    "avg dist"));
+            System.out.println(String.format("\n%-70.70s %-7.7s %-15.15s %-15.15s",
+                    "document", "#occur", "avg rank", "avg dist"));
             List<DocumentStatistics> statistics = Lists.newArrayList();
 
             for (String document : documentToSimilarity.keySet()) {
@@ -401,77 +376,68 @@ public class Retrieval {
                 }
             });
 
-            for (DocumentStatistics stats : statistics.subList(0, Math.min(k * 5, statistics.size()))) {
-                System.out.println(String.format("%-70.70s %7d %15.3f %15.3f", stats.getDocument(),
-                        stats.getNumberOfOccurrences(), stats.getAverageRank(), stats.getAverageDistance()));
-            }
+            for (DocumentStatistics stats : statistics.subList(0, Math.min(k * 5, statistics.size())))
+                System.out.println(String.format("%-70.70s %7d %15.3f %15.3f",
+                        stats.getDocument(), stats.getNumberOfOccurrences(), stats.getAverageRank(),
+                        stats.getAverageDistance()));
 
-            for (DocumentStatistics stats : statistics.subList(Math.min(k * 5, statistics.size()), statistics.size())) {
-                if (stats.getNumberOfOccurrences() < indices.size()) {
-                    System.out.println(String.format("%-70.70s %7d %15.3f %15.3f", stats.getDocument(),
-                            stats.getNumberOfOccurrences(), stats.getAverageRank(), stats.getAverageDistance()));
-                }
-            }
-
-
-
+            for (DocumentStatistics stats : statistics.subList(Math.min(k * 5, statistics.size()), statistics.size()))
+                if (stats.getNumberOfOccurrences() < indices.size())
+                    System.out.println(String.format("%-70.70s %7d %15.3f %15.3f",
+                            stats.getDocument(), stats.getNumberOfOccurrences(), stats.getAverageRank(),
+                            stats.getAverageDistance()));
         }
-            // Print average distances
-            System.out.println("\n\n\n Distances per class:");
-            for(DocumentStatistics stat : documentToStatisticsPerClass.values())
-            {
-                  System.out.println("Class: " + stat.getDocument() + " Min: " + stat.getMinDistance() + " Max: "
-                        + stat.getMaxDistance() + " Avg: " + stat.getAverageDistance());
+
+        // Print average distances
+        System.out.println("\n\n\n Distances per class:");
+        for (DocumentStatistics stat : documentToStatisticsPerClass.values())
+            System.out.println("Class: " + stat.getDocument() +
+                    " Min: " + stat.getMinDistance() +
+                    " Max: " + stat.getMaxDistance() +
+                    " Avg: " + stat.getAverageDistance());
+
+        // Print Occurrences
+        System.out.println("\n\n\nOccurrences of documents in other result lists:");
+
+        ArrayList<DocumentOccurrences> occurrences = new ArrayList<DocumentOccurrences>(docOccurrences.values());
+        Collections.sort(occurrences, new Comparator<DocumentOccurrences>() {
+            @Override
+            public int compare(DocumentOccurrences o1, DocumentOccurrences o2) {
+                return Double.compare(o1.getOccurrences(), o2.getOccurrences());
             }
+        });
 
-            // Print Occurrences
-            System.out.println("\n\n\nOccurrences of documents in other result lists:");
+        for (DocumentOccurrences occurrence : occurrences)
+            System.out.println("Document: " + occurrence.getDocumentName() +
+                    "Occurrences: " + occurrence.getOccurrences());
 
-            ArrayList<DocumentOccurrences> occurrences = new ArrayList<DocumentOccurrences>(docOccurrences.values());
-            Collections.sort(occurrences, new Comparator<DocumentOccurrences>() {
-                @Override
-                public int compare(DocumentOccurrences o1, DocumentOccurrences o2) {
-                    int result = Double.compare(o1.getOccurrences(), o2.getOccurrences());
+        // Print Occurrences per index
+        System.out.println("\n\n\nOccurrences of documents in feature lists:");
 
-                    return result;
-                }
-            });
+        for (File index : indices) {
+            Map<String, DocumentOccurrences> occurrencesPerFeature = docOccurrencesPerIndex.get(index.toString());
 
-            for(DocumentOccurrences occurrence : occurrences)
-            {
-                System.out.println("Document: " + occurrence.getDocumentName() + "Occurrences: " + occurrence.getOccurrences());
-            }
+            if (occurrencesPerFeature != null) {
+                List<DocumentOccurrences> occurrencesForOneFeature =
+                        new ArrayList<DocumentOccurrences>((occurrencesPerFeature.values()));
 
-            // Print Occurrences per index
-            System.out.println("\n\n\nOccurrences of documents in feature lists:");
-
-            for(File index : indices)
-            {
-                HashMap<String, DocumentOccurrences> occurrencesPerFeature = docOccurrencesPerIndex.get(index.toString());
-                if(occurrencesPerFeature != null)
-                {
-                    ArrayList<DocumentOccurrences> occurrencesForOneFeature = new ArrayList<DocumentOccurrences>((occurrencesPerFeature.values()));
-
-
-                    Collections.sort(occurrencesForOneFeature, new Comparator<DocumentOccurrences>() {
-                        @Override
-                        public int compare(DocumentOccurrences o1, DocumentOccurrences o2) {
-                            int result = Double.compare(o1.getOccurrences(), o2.getOccurrences());
-
-                            return result;
-                        }
-                    });
-
-                    System.out.println("Occurrence of Documents in feature " + index.toString() + ":");
-
-                    for(DocumentOccurrences occurrence : occurrences)
-                    {
-                        System.out.println("Document: " + occurrence.getDocumentName() + "Occurrences: " + occurrence.getOccurrences());
+                Collections.sort(occurrencesForOneFeature, new Comparator<DocumentOccurrences>() {
+                    @Override
+                    public int compare(DocumentOccurrences o1, DocumentOccurrences o2) {
+                        return Double.compare(o1.getOccurrences(), o2.getOccurrences());
                     }
+                });
 
-                    System.out.println();
+                System.out.println("Occurrence of Documents in feature " + index.toString() + ":");
+
+                for (DocumentOccurrences occurrence : occurrences) {
+                    System.out.println("Document: " + occurrence.getDocumentName() +
+                            "Occurrences: " + occurrence.getOccurrences());
                 }
+
+                System.out.println();
             }
+        }
     }
 
     private String getInstanceName(Instance instance) {
@@ -482,8 +448,7 @@ public class Retrieval {
         return instance.toString(classAttribute);
     }
 
-    private double distanceNormalization(double distance, double distanceMin, double distanceMax)
-    {
+    private double distanceNormalization(double distance, double distanceMin, double distanceMax) {
         return ((distance - distanceMin) / (distanceMax - distanceMin));
     }
 
@@ -537,13 +502,9 @@ public class Retrieval {
         System.out.println(String.format("k                 : %d", k));
         System.out.println(String.format("Similarity Measure: %s", similarityMeasure));
         System.out.println("Used inidices:");
-        for (File indexFile : indices) {
+
+        for (File indexFile : indices)
             System.out.println("\t" + indexFile.getName());
-        }
-//        System.out.println("Document query:");
-//        for (String queryDocument : queryDocuments) {
-//            System.out.println("\t" + queryDocument);
-//        }
     }
 
     public static void main(String[] args) throws Exception {
