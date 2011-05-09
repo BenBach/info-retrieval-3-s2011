@@ -133,11 +133,14 @@ public class Retrieval {
             }
         }
 
-                    // document -> similarity PER CLASS
+            // document -> similarity PER CLASS
             HashMap<String, DocumentStatistics> documentToStatisticsPerClass = new HashMap();
 
-          // document -> similarity PER CLASS
+          // document -> occurrence PER CLASS
             HashMap<String, DocumentOccurrences> docOccurrences = new HashMap();
+
+            // document -> occurrence PER Feature List
+            HashMap<String, HashMap<String,DocumentOccurrences>> docOccurrencesPerIndex = new HashMap();
 
         for (Map.Entry<String, Map<String, List<DocumentSimilarity>>> queryIndexMap : table.rowMap().entrySet()) {
             String query = queryIndexMap.getKey();
@@ -198,7 +201,19 @@ public class Retrieval {
 
                     DocumentSimilarity similarity = documentSimilarities.get(i);
 
+                    // Add to occurence per index
+                    HashMap<String,DocumentOccurrences> occurrencesPerFeature = docOccurrencesPerIndex.get(index.toString());
+                    if(occurrencesPerFeature == null)
+                        occurrencesPerFeature = new HashMap();
 
+                    DocumentOccurrences occurrence = occurrencesPerFeature.get(similarity.getTargetDocument());
+                    if(occurrence == null)
+                        occurrence = new DocumentOccurrences(similarity.getTargetDocument(), 0);
+
+                    occurrence.increaseOccurrence();
+
+                    occurrencesPerFeature.put(similarity.getTargetDocument(), occurrence);
+                    docOccurrencesPerIndex.put(index.toString(), occurrencesPerFeature);
 
 
                     System.out.print(String.format("%-30.30s %10.6f ", similarity.getTargetDocument(),
@@ -263,7 +278,7 @@ public class Retrieval {
             System.out.println("Average - " + " Min: " + minDist + " Max: "
                         + maxDist + " Avg: " + avgDist );
 
-              System.out.println();
+            System.out.println();
             System.out.println();
             System.out.println();
 
@@ -409,7 +424,7 @@ public class Retrieval {
                         + stat.getMaxDistance() + " Avg: " + stat.getAverageDistance());
             }
 
-            // Print Occurences
+            // Print Occurrences
             System.out.println("\n\n\nOccurrences of documents in other result lists:");
 
             ArrayList<DocumentOccurrences> occurrences = new ArrayList<DocumentOccurrences>(docOccurrences.values());
@@ -427,17 +442,36 @@ public class Retrieval {
                 System.out.println("Document: " + occurrence.getDocumentName() + "Occurrences: " + occurrence.getOccurrences());
             }
 
+            // Print Occurrences per index
+            System.out.println("\n\n\nOccurrences of documents in feature lists:");
 
-//        Iterator i = docOccurrences.entrySet().iterator();
-//        ArrayList<Map.Entry<String, Integer>> entries = new ArrayList();
-//         while(i.hasNext()) {
-//                Map.Entry<String, Integer> result = (Map.Entry<String, Integer>)i.next();
-//                String key = result.getKey();
-//                Integer val = result.getValue();
-//                 entries.add(result);
-//             System.out.println("Document: " + key + "Occurrences: " + val.toString());
-//         }
+            for(File index : indices)
+            {
+                HashMap<String, DocumentOccurrences> occurrencesPerFeature = docOccurrencesPerIndex.get(index.toString());
+                if(occurrencesPerFeature != null)
+                {
+                    ArrayList<DocumentOccurrences> occurrencesForOneFeature = new ArrayList<DocumentOccurrences>((occurrencesPerFeature.values()));
 
+
+                    Collections.sort(occurrencesForOneFeature, new Comparator<DocumentOccurrences>() {
+                        @Override
+                        public int compare(DocumentOccurrences o1, DocumentOccurrences o2) {
+                            int result = Double.compare(o1.getOccurrences(), o2.getOccurrences());
+
+                            return result;
+                        }
+                    });
+
+                    System.out.println("Occurrence of Documents in feature " + index.toString() + ":");
+
+                    for(DocumentOccurrences occurrence : occurrences)
+                    {
+                        System.out.println("Document: " + occurrence.getDocumentName() + "Occurrences: " + occurrence.getOccurrences());
+                    }
+
+                    System.out.println();
+                }
+            }
     }
 
     private String getInstanceName(Instance instance) {
