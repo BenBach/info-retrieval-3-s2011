@@ -1,0 +1,43 @@
+
+building
+--------------------------------------------------------------------------------
+compile the project using ant with the target "package" to generate an
+executable jar file:
+    ant package
+
+attribute detection
+--------------------------------------------------------------------------------
+the first attribute containing class/Class that is of type string or nominal is
+used as class attribute. The first attribute containing document/Document that
+is of type string is used as document attribute. If no attribute matching
+class/Class or document/Document is found the run is aborted.
+
+options
+--------------------------------------------------------------------------------
+    -i    index(feature) files
+              optional, multiple occurrences allowed.
+              the parameter is split on ",", furthermore the wildcards "*" and
+              "?" are allowed.
+              if the parameter is omitted the current working directory is
+              searched for ".arff" and ".arff.gz" files.
+			  
+    -k    the k parameter
+              optional, one occurrence max.
+              if the parameter is omitted the value 5 is used.
+    -m    the distance measure to be used (either L1 or L2)
+              optional, one occurrence max.
+              if the parameter is omitted the value L1 is used.
+
+It might be necessary that the JVM memory limit is increased with
+the "-Xmx" paramter (e.g. -Xmx2048M)
+
+run
+--------------------------------------------------------------------------------
+
+example call for the GTZAN features:
+
+    java -jar retrieval.jar -i "features/GTZAN_output/GTZAN.rh.arff,features/GTZAN_output/GTZAN.rp.arff,features/GTZAN_output/GTZAN.ssd.arff" -k 7
+
+example call for the ISMI features:
+
+    java -jar retrieval.jar -i "features/ISMI_output/ISMI.rh.arff,features/ISMI_output/ISMI.rp.arff,features/ISMI_output/ISMI.ssd.arff" -k 7
