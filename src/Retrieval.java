@@ -271,9 +271,9 @@ public class Retrieval {
                distStats.put(statsForOneIndex.getDocument(), new DistanceStatistics(statsForOneIndex.getMinDistance(), statsForOneIndex.getMaxDistance(), statsForOneIndex.getAverageDistance()));
             }
 
-            minDist += minDist / numberIndices;
-            maxDist += maxDist / numberIndices;
-            avgDist += avgDist / numberIndices;
+            minDist = minDist / numberIndices;
+            maxDist = maxDist / numberIndices;
+            avgDist = avgDist / numberIndices;
 
             System.out.println("Average - " + " Min: " + minDist + " Max: "
                         + maxDist + " Avg: " + avgDist );

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="951fd592-9dc2-4dc0-9fd4-05cd84abd370" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiment/Result_GTZAN.arff" afterPath="$PROJECT_DIR$/experiment/Result_GTZAN.arff" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/info-retrieval-3-s2011.iws" afterPath="$PROJECT_DIR$/info-retrieval-3-s2011.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Retrieval.java" afterPath="$PROJECT_DIR$/src/Retrieval.java" />
     </list>
     <ignored path="info-retrieval-3-s2011.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -13,6 +14,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="Commander">
+    <leftPanel />
+    <rightPanel />
+    <splitter proportion="0.5" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
     <option name="REVERSE_PATCH" value="false" />
@@ -88,7 +94,7 @@
       <file leaf-file-name="Retrieval.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Retrieval.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="437" column="60" selection-start="18661" selection-end="18661" vertical-scroll-proportion="0.0665362">
+            <state line="273" column="20" selection-start="11643" selection-end="11643" vertical-scroll-proportion="0.5395257">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,16 +105,7 @@
       <file leaf-file-name="DocumentOccurrences.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DocumentOccurrences.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="30" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArrayList.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://C:/jdk1.6.0_23/src.zip!/java/util/ArrayList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="386" column="0" selection-start="14261" selection-end="14261" vertical-scroll-proportion="0.0">
+            <state line="27" column="61" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -436,14 +433,14 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2513369" sideWeight="0.6026786" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39732143" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38528138" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12139037" sideWeight="0.359375" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12139037" sideWeight="0.36688313" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.6707589" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12139037" sideWeight="0.234375" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4" sideWeight="0.6147186" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12139037" sideWeight="0.2391775" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -521,29 +518,9 @@
         <state line="6" column="19" selection-start="252" selection-end="252" vertical-scroll-proportion="0.21564482" />
       </provider>
     </entry>
-    <entry file="jar://C:/jdk1.6.0_23/src.zip!/java/util/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="337" column="14" selection-start="16381" selection-end="16408" vertical-scroll-proportion="0.33216783" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DocumentStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="42" selection-start="460" selection-end="460" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DocumentOccurrences.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="30" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/jdk1.6.0_23/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="386" column="0" selection-start="14261" selection-end="14261" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DistanceStatistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="5" selection-start="712" selection-end="712" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DocumentSimilarity.java">
@@ -556,9 +533,35 @@
         <state line="7" column="12" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DistanceStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="5" selection-start="712" selection-end="712" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="jar://C:/jdk1.6.0_23/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="386" column="0" selection-start="14261" selection-end="14261" vertical-scroll-proportion="0.0332681">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DocumentOccurrences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="61" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/jdk1.6.0_23/src.zip!/java/util/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="17" selection-start="5193" selection-end="5193" vertical-scroll-proportion="0.33268103">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Retrieval.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="437" column="60" selection-start="18661" selection-end="18661" vertical-scroll-proportion="0.0665362">
+        <state line="273" column="20" selection-start="11643" selection-end="11643" vertical-scroll-proportion="0.5395257">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
