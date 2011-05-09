@@ -3,7 +3,8 @@
 *.iml
 
 
-/.idea
 
+.idea/
 build/
+data/
 
