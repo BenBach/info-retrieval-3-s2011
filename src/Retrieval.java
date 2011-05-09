@@ -220,6 +220,55 @@ public class Retrieval {
                 System.out.println();
             }
 
+
+            for (int i = 0; i < k; i++) {
+                System.out.print(String.format("#%3d ", i));
+
+                for (File index : indices) {
+                    List<DocumentSimilarity> documentSimilarities = indexResults.get(index.getName());
+                    DocumentStatistics statisticsPerIndex = indexStatistics.get(index.toString());
+
+                    if (statisticsPerIndex == null)
+                        statisticsPerIndex = new DocumentStatistics(index.toString());
+
+                    if (documentSimilarities == null) {
+                        System.err.println("No similarities for index " + index.getName());
+                        for (int j = 0; j < 42; j++) System.out.print(' ');
+                        continue;
+                    }
+
+                    for (DocumentSimilarity documentSimilarity : documentSimilarities)
+                        documentToSimilarity.put(documentSimilarity.getTargetDocument(), documentSimilarity);
+
+                    DocumentSimilarity similarity = documentSimilarities.get(i);
+
+                    // Add to occurrence per index
+                    Map<String, DocumentOccurrences> occurrencesPerFeature =
+                            docOccurrencesPerIndex.get(index.toString());
+
+                    if (occurrencesPerFeature == null)
+                        occurrencesPerFeature = Maps.newHashMap();
+
+                    DocumentOccurrences occurrence = occurrencesPerFeature.get(similarity.getTargetDocument());
+
+                    if (occurrence == null)
+                        occurrence = new DocumentOccurrences(similarity.getTargetDocument(), 0);
+
+                    occurrence.increaseOccurrence();
+
+                    occurrencesPerFeature.put(similarity.getTargetDocument(), occurrence);
+                    docOccurrencesPerIndex.put(index.toString(), occurrencesPerFeature);
+
+                    System.out.print(String.format("%-30.30s %10.6f ", similarity.getTargetDocument(),
+                            similarity.getDistance()));
+
+                    statisticsPerIndex.addState(0, similarity.getDistance());
+                    indexStatistics.put(index.toString(), statisticsPerIndex);
+                }
+
+                System.out.println();
+            }
+
             String queryClass = query.split("/", 2)[0];
 
             for (File index : indices) {
@@ -430,7 +479,7 @@ public class Retrieval {
 
                 System.out.println("Occurrence of Documents in feature " + index.toString() + ":");
 
-                for (DocumentOccurrences occurrence : occurrences) {
+                for (DocumentOccurrences occurrence : occurrencesForOneFeature) {
                     System.out.println("Document: " + occurrence.getDocumentName() +
                             "Occurrences: " + occurrence.getOccurrences());
                 }
