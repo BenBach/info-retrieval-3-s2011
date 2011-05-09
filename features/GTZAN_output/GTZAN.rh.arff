@@ -63,7 +63,7 @@
 @ATTRIBUTE feature58	NUMERIC
 @ATTRIBUTE feature59	NUMERIC
 @ATTRIBUTE feature60	NUMERIC
-@ATTRIBUTE instanceName string
+@ATTRIBUTE documentName string
 @ATTRIBUTE class {'reggae','classical','metal','hiphop','jazz','disco','rock','pop','blues','country'}
 
 @DATA
